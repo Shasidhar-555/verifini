@@ -1,0 +1,38 @@
+[
+  {
+    "id": "REC-SAMPLE-001",
+    "is_sample": true,
+    "image_file": "sample_flood_illustration.png",
+    "claim_text": "Illustrative flood scene used to demonstrate image reuse checks",
+    "description": "Synthetic illustration for the VerifINI prototype. Not a real news photograph and not evidence of an actual event.",
+    "location": "Chennai (demo label only)",
+    "recorded_date": "2023-12-05",
+    "source_name": "VerifINI demonstration record",
+    "source_url": "",
+    "credibility_label": "Sample only"
+  },
+  {
+    "id": "REC-SAMPLE-002",
+    "is_sample": true,
+    "image_file": null,
+    "claim_text": "Heavy rainfall and waterlogging reported in parts of Chennai after persistent rain",
+    "description": "Text-only example record for testing related-claim matching.",
+    "location": "Chennai (demo label only)",
+    "recorded_date": "2023-12-06",
+    "source_name": "VerifINI demonstration record",
+    "source_url": "",
+    "credibility_label": "Sample only"
+  },
+  {
+    "id": "REC-SAMPLE-003",
+    "is_sample": true,
+    "image_file": null,
+    "claim_text": "An older photograph may be recirculated with a new date or location claim",
+    "description": "Generic example record for demonstrating context review.",
+    "location": "Not established",
+    "recorded_date": "2024-01-12",
+    "source_name": "VerifINI demonstration record",
+    "source_url": "",
+    "credibility_label": "Sample only"
+  }
+]

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f7f8fa" />
+  <title>VerifINI — Check the context before you share</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="VerifINI home">
+      <span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2 19 6v5.3c0 4.3-2.9 7.8-7 9.5-4.1-1.7-7-5.2-7-9.5V6l7-2.8Z"/><path d="m8.6 11.8 2.2 2.1 4.7-4.7"/></svg></span>
+      <span class="brand-name">VerifINI</span>
+    </a>
+    <nav class="topnav" aria-label="Main navigation">
+      <a class="nav-link active" href="#composer">Create post</a>
+      <a class="nav-link" href="#feed-section">Feed</a>
+      <span class="prototype-pill"><span class="status-dot"></span> Prototype</span>
+    </nav>
+  </header>
+
+  <main id="top" class="page-shell">
+    <section class="intro">
+      <p class="eyebrow">SHARE THOUGHTFULLY. VERIFY THE CONTEXT.</p>
+      <h1>A little context can<br class="desktop-break" /> change everything.</h1>
+      <p class="intro-copy">Review an image, caption, and description before publishing. VerifINI looks for related records and explains what may need a closer look.</p>
+    </section>
+
+    <section class="workspace" id="composer" aria-label="Create and review a post">
+      <div class="panel composer-panel">
+        <div class="panel-heading">
+          <div><p class="section-kicker">YOUR POST</p><h2>Create a post</h2></div>
+          <span class="step-label">STEP 01</span>
+        </div>
+        <form id="post-form">
+          <label class="field-label" for="image-input">Image <span class="optional">Optional</span></label>
+          <label class="upload-box" id="upload-box" for="image-input">
+            <input id="image-input" type="file" accept="image/png,image/jpeg,image/webp" />
+            <span class="upload-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="9" cy="9.5" r="1.5"/><path d="m5 17 5-5 3 3 2-2 4 4"/></svg></span>
+            <span class="upload-title" id="upload-title">Choose an image to review</span>
+            <span class="upload-hint" id="upload-hint">PNG, JPG or WEBP · up to 8 MB</span>
+            <img id="image-preview" alt="Selected image preview" hidden />
+          </label>
+
+          <label class="field-label" for="caption">Caption <span class="optional">Short post text</span></label>
+          <textarea id="caption" name="caption" rows="3" maxlength="500" placeholder="What do you want to share? For example: Heavy flooding in Chennai right now…"></textarea>
+          <div class="field-meta"><span>Keep claims clear and specific.</span><span id="caption-count">0 / 500</span></div>
+
+          <label class="field-label description-label" for="description">Description <span class="optional">Additional context</span></label>
+          <textarea id="description" name="description" rows="3" maxlength="1500" placeholder="Add details, date, location, or where this information came from…"></textarea>
+          <div class="field-meta"><span>Sources are helpful when available.</span><span id="description-count">0 / 1500</span></div>
+
+          <div class="form-error" id="form-error" role="alert" hidden></div>
+          <button class="button button-primary check-button" id="check-button" type="submit">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.2 4.2M8 10.8l1.8 1.8 3.7-3.8"/></svg>
+            <span>Check Before Posting</span><span class="button-arrow">→</span>
+          </button>
+          <p class="privacy-note"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Prototype checks against a local sample evidence index.</p>
+        </form>
+      </div>
+
+      <div class="panel results-panel" id="results-panel" aria-live="polite">
+        <div class="panel-heading">
+          <div><p class="section-kicker">CONTEXT REVIEW</p><h2>Review findings</h2></div>
+          <span class="step-label">STEP 02</span>
+        </div>
+        <div id="empty-state" class="empty-state">
+          <div class="empty-illustration"><svg viewBox="0 0 80 80" aria-hidden="true"><rect x="13" y="11" width="43" height="54" rx="5"/><path d="M23 25h22M23 34h17M23 43h12"/><circle cx="52" cy="52" r="14"/><path d="m47 52 4 4 7-8"/></svg></div>
+          <h3>Your review will appear here</h3>
+          <p>Add an image, caption, or description, then select <strong>Check Before Posting</strong> to see related records and possible context issues.</p>
+          <div class="empty-points"><span><svg viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg> Related records</span><span><svg viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg> Dates and sources</span><span><svg viewBox="0 0 20 20"><path d="m4 10 4 4 8-8"/></svg> Clear uncertainty</span></div>
+        </div>
+        <div id="loading-state" class="loading-state" hidden><span class="spinner"></span><h3>Checking available context…</h3><p>Comparing your content with the local evidence index.</p></div>
+        <div id="results-content" hidden>
+          <div id="verdict-card" class="verdict-card">
+            <div class="verdict-icon" id="verdict-icon"><svg viewBox="0 0 24 24"><path d="M12 3 21 19H3L12 3Z"/><path d="M12 9v4m0 3h.01"/></svg></div>
+            <div class="verdict-copy"><div class="verdict-topline"><span id="confidence-label" class="confidence-label">MEDIUM CONFIDENCE</span><span class="sample-badge">SAMPLE INDEX</span></div><h3 id="verdict-title">Needs verification</h3><p id="verdict-summary"></p></div>
+          </div>
+          <div class="result-section"><div class="result-section-heading"><h3>Why it was flagged</h3><span id="reason-count" class="count-chip">0 findings</span></div><ul id="reasons-list" class="reason-list"></ul></div>
+          <div class="result-section" id="evidence-section"><div class="result-section-heading"><h3>Related evidence</h3><span id="evidence-count" class="count-chip">0 records</span></div><div id="evidence-list" class="evidence-list"></div><p id="no-evidence" class="no-evidence" hidden>No related records were found in this sample index.</p></div>
+          <div class="suggestion-card"><div class="suggestion-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"/><circle cx="12" cy="12" r="4"/></svg><h3>Suggested wording</h3></div><p id="suggested-caption"></p><button id="use-suggestion" class="text-button" type="button">Use this wording <span>→</span></button></div>
+          <p class="disclaimer" id="disclaimer-text"></p>
+          <div class="result-actions"><button class="button button-secondary" id="edit-button" type="button">Edit post</button><button class="button button-primary" id="publish-button" type="button">Publish anyway <span>→</span></button></div>
+          <button id="challenge-button" class="challenge-button" type="button">Challenge this result</button><p id="challenge-message" class="challenge-message" hidden></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="feed-section" id="feed-section">
+      <div class="feed-heading"><div><p class="section-kicker">COMMUNITY</p><h2>Your feed</h2><p>Posts you choose to publish will appear here.</p></div><span id="feed-count" class="feed-count">0 posts</span></div>
+      <div id="feed-list" class="feed-list"><div class="feed-empty"><span class="feed-empty-icon"><svg viewBox="0 0 24 24"><path d="M4 5.5h16v13H4zM8 9h8M8 13h5"/></svg></span><span><strong>Your feed is ready</strong><small>Publish your first reviewed post to see it here.</small></span></div></div>
+    </section>
+    <footer class="footer"><span class="footer-brand">VerifINI</span><span>Context first. Confidence with care.</span><span>Hackathon prototype · Sample data</span></footer>
+  </main>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
